@@ -13,7 +13,7 @@
 #include "libTimer.h"
 
 #include "buzzer.h"
-
+extern void delay();
 
 
 

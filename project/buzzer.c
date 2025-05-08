@@ -60,15 +60,15 @@ void buzzer_set_period(short cycles) /* buzzer clock = 2MHz.  (period of 1k resu
 
 }
 
-void delay(unsigned int milliseconds){
+void delCyc(){
 
-  unsigned int i;
+  // unsigned int i;
 
-  for(i = 0; i < milliseconds; i++){
+  //  for(i = 0; i < milliseconds; i++){
 
     __delay_cycles(2000); //delay 1 millisecond
 
-  }
+    //}
 
 
 }

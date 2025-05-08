@@ -38,7 +38,7 @@ all: project.elf
 
 
 
-project.elf: ${COMMON_OBJECTS} main.o states.o led.o wdt_interupt.o p2_interrupt_handler.o switches.o buzzer.o  ../lib/libTimer.a
+project.elf: ${COMMON_OBJECTS} main.o states.o led.o wdt_interupt.o p2_interrupt_handler.o switches.o buzzer.o delay.o  ../lib/libTimer.a
 
 	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $^ -lLcd
 
@@ -57,3 +57,4 @@ load: project.elf
 clean:
 
 	rm -f *.o *.elf *.c~ *.h~
+delay.o: delay.s
