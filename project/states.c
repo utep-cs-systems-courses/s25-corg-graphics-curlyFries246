@@ -52,18 +52,24 @@ void mary(){
   buzzer_set_period(C4); delay(H);
   buzzer_set_period(D4); delay(H);
   buzzer_set_period(E4); delay(H);
+  buzzer_set_period(0);
   buzzer_set_period(E4); delay(H);
+  buzzer_set_period(0);
   buzzer_set_period(E4); delay(H);
   buzzer_set_period(D4); delay(H);
+  buzzer_set_period(0);
   buzzer_set_period(D4); delay(H);
+  buzzer_set_period(0);
   buzzer_set_period(D4); delay(H);
+  buzzer_set_period(0);
   buzzer_set_period(E4); delay(H);
   buzzer_set_period(G4); delay(H);
+  buzzer_set_period(0);
   buzzer_set_period(G4); delay(H);
   buzzer_set_period(0);
 }
 
-void fillTriangle(u_char colMin, u_char rowMin, u_char width, u_char height, u_int colorBGR)
+void fillTriangle(char colMin, char rowMin, char width, char height, int colorBGR)
 {
 
   if (width % 2 == 0) width--;
@@ -90,14 +96,14 @@ void fillTriangle(u_char colMin, u_char rowMin, u_char width, u_char height, u_i
 
 
 void states(int n){
-
+  char word[15];
   switch(n){
   case 1:
     clearScreen(COLOR_BLUE);
     fillRectangle(screenWidth/2,screenHeight/2,10,10,COLOR_RED);
-    char name[25];
-    sprintf(name,"Marry Had a Little Lamb");
-    drawString5x7(screenWidth/2,5,name,COLOR_WHITE, COLOR_RED);
+    sprintf(word,"hello");
+    //drawString5x7(screenWidth,10,name,COLOR_WHITE, COLOR_RED);
+    drawString5x7(screenWidth - 100, 5, word, COLOR_WHITE, COLOR_RED);
     limit=-1;
     mary();
     wink();
@@ -105,8 +111,12 @@ void states(int n){
 
    case 2:
      clearScreen(COLOR_RED);
-
-
+     fillTriangle(screenWidth/2,screenHeight/2,10,20,COLOR_BLUE);
+     sprintf(word,"triangle");
+     drawString5x7(screenWidth-60,5,word,COLOR_WHITE, COLOR_BLUE);
+     limit =-1;
+     twinkle();
+     wink();
      break;
     
     
