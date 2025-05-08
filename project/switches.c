@@ -46,25 +46,25 @@ void switch_interrupt_handler()
   if(sw_1){
 
     states(1);
-
+    
   }
 
   else if(sw_2){
 
     states(2);
-
+    
   }
 
   else if(sw_3){
 
     states(3);
-
+    
   }
 
   else if(sw_4){
 
     states(4);
-
+    
   }
 
 }

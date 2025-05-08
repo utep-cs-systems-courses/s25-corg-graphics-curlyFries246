@@ -26,8 +26,29 @@ void wink(){
   P1OUT |= LED_RED;
   buzzer_set_period(0);
 }
-
-
+void lastOne(){
+  buzzer_set_period(C4); delay(Q);
+  buzzer_set_period(D4); delay(Q);
+  buzzer_set_period(D4); delay(Q);
+  buzzer_set_period(E4); delay(Q);
+  buzzer_set_period(E4); delay(Q);
+  buzzer_set_period(0);
+}
+void chime(){
+  buzzer_set_period(G4); delay(Q);
+  buzzer_set_period(G4); delay(Q);
+  buzzer_set_period(A4); delay(Q);
+  buzzer_set_period(A4); delay(Q);
+  buzzer_set_period(B4); delay(Q);
+  buzzer_set_period(B4); delay(Q);
+  buzzer_set_period(A4); delay(Q);
+  buzzer_set_period(F4); delay(Q);
+  buzzer_set_period(F4); delay(Q);
+  buzzer_set_period(F4); delay(Q);
+  buzzer_set_period(E4); delay(Q);
+  
+  buzzer_set_period(0);
+}
 void twinkle(){
   buzzer_set_period(C4); delay(Q);
   buzzer_set_period(C4); delay(Q);
@@ -52,19 +73,9 @@ void mary(){
   buzzer_set_period(C4); delay(H);
   buzzer_set_period(D4); delay(H);
   buzzer_set_period(E4); delay(H);
-  buzzer_set_period(0);
-  buzzer_set_period(E4); delay(H);
-  buzzer_set_period(0);
-  buzzer_set_period(E4); delay(H);
   buzzer_set_period(D4); delay(H);
-  buzzer_set_period(0);
-  buzzer_set_period(D4); delay(H);
-  buzzer_set_period(0);
-  buzzer_set_period(D4); delay(H);
-  buzzer_set_period(0);
   buzzer_set_period(E4); delay(H);
   buzzer_set_period(G4); delay(H);
-  buzzer_set_period(0);
   buzzer_set_period(G4); delay(H);
   buzzer_set_period(0);
 }
@@ -94,24 +105,49 @@ void fillTriangle(char colMin, char rowMin, char width, char height, int colorBG
   }
 }
 
+void drawStar(char colCenter, char rowCenter, char size, int colorBGR) {
+
+
+  fillRectangle(colCenter, rowCenter - size, 1, size * 2 + 1, colorBGR);
+
+
+  fillRectangle(colCenter - size, rowCenter, size * 2 + 1, 1, colorBGR);
+
+
+  for (int i = -size; i <= size; i++) {
+
+    lcd_setArea(colCenter + i, rowCenter - i, colCenter + i, rowCenter - i);
+
+    lcd_writeColor(colorBGR);
+
+    lcd_setArea(colCenter + i, rowCenter + i, colCenter + i, rowCenter + i);
+
+    lcd_writeColor(colorBGR);
+
+  }
+
+}
+
+
 
 void states(int n){
   char word[15];
   switch(n){
   case 1:
+    limit=-1;
     clearScreen(COLOR_BLUE);
-    fillRectangle(screenWidth/2,screenHeight/2,10,10,COLOR_RED);
-    sprintf(word,"hello");
+    fillRectangle(screenWidth/2,screenHeight/2,50,50,COLOR_RED);
+    sprintf(word,"HELLO");
     //drawString5x7(screenWidth,10,name,COLOR_WHITE, COLOR_RED);
     drawString5x7(screenWidth - 100, 5, word, COLOR_WHITE, COLOR_RED);
-    limit=-1;
     mary();
     wink();
     break;
 
    case 2:
-     clearScreen(COLOR_RED);
-     fillTriangle(screenWidth/2,screenHeight/2,10,20,COLOR_BLUE);
+     limit=-1;
+     clearScreen(COLOR_GREEN);
+     fillTriangle(screenWidth/2, (screenHeight/2) , 30, 50, COLOR_RED);
      sprintf(word,"triangle");
      drawString5x7(screenWidth-60,5,word,COLOR_WHITE, COLOR_BLUE);
      limit =-1;
@@ -119,7 +155,26 @@ void states(int n){
      wink();
      break;
     
-    
-  }
+  case 3:
+    limit=-1;
+    clearScreen(COLOR_BLACK);
+    sprintf(word,"STARS");
+    drawString5x7(screenWidth-60,5,word,COLOR_WHITE,COLOR_BLACK);
+    drawStar(screenWidth / 2, screenHeight / 2, 5, COLOR_YELLOW);
+    drawStar(screenWidth - 50, screenHeight-20, 5, COLOR_YELLOW);
+    drawStar(screenWidth -30, screenHeight-10, 5, COLOR_RED);
+    drawStar(screenWidth-100, screenHeight-50, 5, COLOR_YELLOW);
+    chime();
+    wink();
+    break;
 
+  case 4:
+     limit = -1;
+     clearScreen(COLOR_GOLD);
+     sprintf(word,"done");
+     drawString5x7(screenWidth/2,screenHeight/2,word,COLOR_WHITE,COLOR_GOLD);
+     lastOne();
+     wink();
+     break;
+  }
 }
